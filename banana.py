@@ -1,10 +1,10 @@
-def getSquare(im):
+def getSquare(im, threshold):
     from PIL import Image
     
-    im = im.crop(getBox(im))
+    im = im.crop(getBox(im, threshold))
     return im
     
-def getBox(im):
+def getBox(im, threshold):
  width = im.width
  height = im.height
  pix = im.load()
@@ -17,7 +17,7 @@ def getBox(im):
  for w in range(0, width):
   for h in range(0, height):
    pixel = pix[w,h]
-   if (pixel[0] < 255 or pixel[1] < 255 or pixel[2] < 255):
+   if (pixel[0] < threshold or pixel[1] < threshold or pixel[2] < threshold):
     if (w > xmax): xmax = w
     if (w < xmin): xmin = w
     if (h > ymax): ymax = h
