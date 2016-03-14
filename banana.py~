@@ -1,5 +1,6 @@
 def getSquare(im, threshold):
     from PIL import Image
+    
     im = im.crop(getBox(im, threshold))
     return im
     

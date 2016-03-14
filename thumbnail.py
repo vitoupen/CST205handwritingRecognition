@@ -1,14 +1,12 @@
 from PIL import Image
 from resizeimage import resizeimage
 
-#im = Image.open("lion.jpg")
-#im.show() #opens image app and displays photo
-#print(im) #prints information and location
-#print im.format, im.size, im.mode
+#OPEN THE LION PICTURE, STORE IN im
+kovu = Image.open("lion.jpg")
 
+#OPENS IMAGE APP AND DISPLAYS PHOTO
+kovu.show()
 
-fd_img = open('lion.jpg', 'r')
-img = Image.open(fd_img)
-img = resizeimage.resize_thumbnail(img, [200, 200])
-img.save('test-lion.jpg', img.format)
-fd_img.close()
+#PRINTS INFORMATION AND LOCATION 
+print(kovu)
+print kovu.format, kovu.size, kovu.mode
