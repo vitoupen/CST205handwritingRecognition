@@ -24,6 +24,7 @@ w = Canvas(c, width=canvas_width, height=canvas_height,bg="white")
 B = Button(c, text ="Save", command = save, anchor = N).pack(side=LEFT)
 B2 = Button(c, text="Clear", command = clear, anchor = N).pack(side=LEFT)
 w.pack(expand = YES, fill = BOTH)
-w.bind("<B1-Motion>", paint)
+w.bind( "<B1-Motion>", paint  )
+
     
 mainloop()
