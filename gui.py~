@@ -1,15 +1,51 @@
-#Name: Mavey Ma
-#Last Edited: March 30, 2016
-#Description: Graphical User Interface for iDigit which allows user to 
-
+'''
+NAME: Mavey Ma
+LAST EDITED: March 30, 2016
+DESCRIPTION: Graphical User Interface for iDigit with three buttons:
+[DRAWPAD] - User draws number with mouse
+[UPLOAD] - Browse and upload photo to analyze
+[EXIT] - Closes window
+'''
 from Tkinter import *
 import Tkinter as tk
 import tkFont
 from tkFileDialog import askopenfilename
 from PIL import Image, ImageTk
 #==========FUNCTION DEFINITIONS==========
-#UPLOAD BUTTON FUNCTION: ALLOWS USER TO SELECT A FILE TO UPLOAD
-def browsecsv():
+#BUTTON DRAWPAD: ALLOWS USER TO OPEN DRAWPAD
+def paint(event):
+   black = "#000000"
+   x1, y1 = (event.x - 5), (event.y - 5)
+   x2, y2 = (event.x + 5), (event.y + 5)
+   w.create_oval(x1, y1, x2, y2, fill=black)
+
+def clear():
+   w.delete("all")
+
+def dibujar():
+    canvas_width = 350
+    canvas_height = 350
+    #c = Tk()
+    #INSTRUCTIONS IN UPPER RIGHT HAND CORNER
+    welcome = Label(master, text = "Welcome to iDigit.",
+                    font=courierText)
+    welcome.place(x=0,y=0)
+    message = Label(master, text = "Press & slowly drag the mouse to draw.",
+                    font=courierText)
+    message.place(x=0,y=25)
+    #WHITE CANVAS
+    w = Canvas(master, width=canvas_width, height=canvas_height, bg="white")
+    w.place(x=175, y=100)
+    w.bind("<B1-Motion>", paint)
+    #CLEAR CANVAS
+    clean = Button(master, text="CLEAR CANVAS", font=courierFont, 
+                   fg="black", bg="white",
+                   activeforeground="white", activebackground="black",
+                   command=clear, width = 12)
+    clean.place(x=460, y=0)
+
+#BUTTON UPLOAD: ALLOWS USER TO SELECT A FILE TO UPLOAD
+def browse():
     #Tk().withdraw() #this would prevent the root window from appearing
     filename = askopenfilename() #show an "Open" dialog box and return the path to the selected file
     im = Image.open(filename)
@@ -17,7 +53,7 @@ def browsecsv():
     tk.Label(master, image=tkimage).pack()
     return filename
 #==========STYLE SET UP==========
-#? NOT SURE
+#BOX
 master = Tk()
 #CREATE A CANVAS w SIZE 800x500
 w = Canvas(master, width=600, height=500)
@@ -25,56 +61,45 @@ w = Canvas(master, width=600, height=500)
 w.pack()
 #SET FONT
 courierFont = tkFont.Font(family="Courier", size=21, weight=tkFont.BOLD)
+courierText = tkFont.Font(family="Courier", size=15, weight=tkFont.BOLD)
 #WINDOW TITLE
 master.title("i d i g i t     [Number Identifier]")
 #NOTE: TOP FRAME IS DEFAULT
 #BOTTOM LOCATION
 bottomFrame = Frame(master)
-bottomFrame.pack(side = BOTTOM)
+bottomFrame.pack(side=BOTTOM)
 #RIGHT LOCATION
 rightFrame = Frame(master)
-rightFrame.pack(side = RIGHT)
+rightFrame.pack(side=RIGHT)
 #LEFT LOCATION
 leftFrame = Frame(master)
-leftFrame.pack(side = LEFT)
+leftFrame.pack(side=LEFT)
 #==========BUTTONS==========
 """ TEMPLATE FOR BUTTON PARAMETERS
 BUTTON(LOCATION, TEXT, FONT,
        FOREGROUND(COLOR OF TEXT), BACKGROUND,
        HOVERTEXT, HOVERGROUND)
 """
-
-
 #BUTTON DRAWPAD: ALLOWS USER TO OPEN DRAWPAD
 drawPadButton = Button(leftFrame, text="DRAWPAD", font=courierFont, 
                       fg="black", bg="LightBlue",
-                      activeforeground="black", activebackground="deep sky blue",
-                      command=browsecsv, width = 12)
-drawPadButton.pack(side = LEFT)
+                      activeforeground="white", activebackground="#00BFFF",
+                      command=dibujar, width = 12)
+drawPadButton.pack(side=LEFT)
 
 #BUTTON UPLOAD: ALLOWS USER TO SELECT A FILE TO UPLOAD
 uploadButton = Button(leftFrame, text="UPLOAD", font=courierFont, 
                       fg="black", bg="LightGreen",
-                      activeforeground="black", activebackground="LawnGreen",
-                      command=browsecsv, width = 12)
-uploadButton.pack(side = LEFT)
+                      activeforeground="white", activebackground="#00BA37",
+                      command=browse, width = 12)
+uploadButton.pack(side=LEFT)
 
-#BUTTON RESET: CLEARS PROGRAM AND ALLOWS USER TO TRY A NEW PHOTO
-resetButton = Button(leftFrame, text="RESET", font=courierFont,
+#BUTTON EXIT: CLOSES WINDOW
+resetButton = Button(leftFrame, text="EXIT", font=courierFont,
                      fg="black", bg="pink",
-                     activeforeground="black", activebackground="red",
-                     width = 12)
-resetButton.pack(side = LEFT)
-
-'''
-canvas_width = 500
-canvas_height = 500
-
-c = Tk()
-message = Label(c, text = "Press & slowly drag the mouse to draw" )
-message.pack(side=TOP)
-w = Canvas(c, width=canvas_width, height=canvas_height,bg="white")
-'''
+                     activeforeground="white", activebackground="#FF0DF2",
+                     command=quit, width = 12)
+resetButton.pack(side=LEFT)
 #==========PROCESS INPUT HERE==========
 
 #END PROGRAM, RUN IT

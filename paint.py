@@ -1,16 +1,17 @@
 from Tkinter import *
 from Image  import *
 
-def paint( event ):
+def paint(event):
    black = "#000000"
-   x1, y1 = ( event.x - 5 ), ( event.y - 5 )
-   x2, y2 = ( event.x + 5 ), ( event.y + 5 )
-   w.create_oval( x1, y1, x2, y2, fill = black )\
+   x1, y1 = (event.x - 5), (event.y - 5)
+   x2, y2 = (event.x + 5), (event.y + 5)
+   w.create_oval(x1, y1, x2, y2, fill=black)
 
 def save():
-   image = w.postscript(file = "image.jpg",
-                        height=100,width=100,
-                        colormode="color") 
+   image = w.postscript(file="image.jpg",
+                        height=100, width=100,
+                        colormode="color")
+
 def clear():
    w.delete("all")
 
