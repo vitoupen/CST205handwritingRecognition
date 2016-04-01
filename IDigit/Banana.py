@@ -12,7 +12,7 @@ def getBox(im, threshold):
  xmax = 0
  ymin = height
  ymax = 0
-    
+# Nomalize the pixels that can surrounds the number
  for w in range(0, width):
   for h in range(0, height):
    pixel = pix[w,h]
@@ -23,7 +23,7 @@ def getBox(im, threshold):
     if (h < ymin): ymin = h
 
  return getBoxDims(xmin, xmax, ymin, ymax)
- 
+# Get the box's coordinates
 def getBoxDims(xmin, xmax, ymin, ymax):
     dx = xmax - xmin
     dy = ymax - ymin

@@ -30,6 +30,7 @@ class IDigit():
 	
 	def classify88():
 	    image = Banana.getSquare(200)
+	    # Convert the image to fit the size of the training set ( 8x8 pixels)
 	    image.thumbnail((8,8))
 	    data = []
 	    width = image.width
@@ -48,7 +49,7 @@ class IDigit():
 		self.pad = DrawPad((300, 300), "white")
 		self.pad.draw(10)
 		self.setImage(self.pad.getImage())
-		
+	#upload the image
 	def setImage(self, image=None):
 		if (image == None):
 		    file_ = askopenfilename()

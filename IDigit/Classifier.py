@@ -1,4 +1,4 @@
-
+# Full resolution data ( 28x28 pixels images) 
 def initializeKNNMNIST(num_neighbors):
     from sklearn.neighbors import KNeighborsClassifier
     clf = KNeighborsClassifier(num_neighbors)
@@ -10,7 +10,7 @@ def initializeKNNMNIST(num_neighbors):
     clf.fit(dataset.data, dataset.target)
     
     return clf
-
+# Partial data - 180 samples of each digits is used for classification
 def initializeMNISTKNN180(num_neighbors):
     from sklearn.neighbors import KNeighborsClassifier
     clf = KNeighborsClassifier(num_neighbors)
@@ -65,7 +65,7 @@ def initializeMNISTKNN180(num_neighbors):
     clf.fit(subset_data, subset_target)
 
     return clf
-
+# 8 x 8 pixels images data
 def initializeClassifier(num_neighbors):
     from sklearn import datasets
     digits = datasets.load_digits()
